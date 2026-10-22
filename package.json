@@ -1,0 +1,12 @@
+{
+  "name": "mim-jannat-telegram-bot",
+  "version": "1.2.0",
+  "private": true,
+  "description": "Mim Jannat — context-aware Telegram AI persona bot by GTS Tarek",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
