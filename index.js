@@ -113,8 +113,7 @@ async function aiReply(ctx, text, key) {
   clipped.push({ role: 'assistant', content: answer });
   db.conversations[key] = clipped.slice(-10);
   await saveDb();
-  await ctx.reply(answer, { reply_parameters: { message_id: ctx.msg.message_id } });
-}
+ await ctx.reply(answer);
 
 async function canManageGroupReplies(ctx) {
   // The bot's first private-chat owner may manage triggers too.
