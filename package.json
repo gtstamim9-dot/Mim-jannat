@@ -1,0 +1,20 @@
+{
+  "name": "mim-jannat-telegram-bot",
+  "version": "1.5.0",
+  "private": true,
+  "description": "Mim Jannat Telegram bot with AI, group replies, owner tools, welcome editor and URL buttons",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "check": "node --check index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@grammyjs/runner": "^2.0.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "grammy": "^1.35.0"
+  }
+}
