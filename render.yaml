@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: mim-jannat-bot
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false
+    # Data (users, groups, settings) survives restarts only with a Persistent Disk (paid plan).
+    # Change "plan" to starter (or higher) and uncomment:
+    # disk:
+    #   name: mim-data
+    #   mountPath: /opt/render/project/src/data
+    #   sizeGB: 1
