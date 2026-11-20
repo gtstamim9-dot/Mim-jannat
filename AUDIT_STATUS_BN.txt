@@ -1,0 +1,46 @@
+MIM JANNAT BOT — SOURCE AUDIT STATUS
+Date: 2026-11-20
+Confirmed Bot Creator: GTS Tarek
+Confirmed Numeric Telegram ID: 7926785649
+
+Completed in this source hardening pass:
+- Single config.js Creator identity.
+- Central fail-closed permission service used by index.js, features.js and premium.js.
+- Anonymous users are not inferred to be Group Creator.
+- Telegram API verification failure denies Creator access.
+- Group creator cache refresh/invalidation improvements.
+- Bot Creator /panel list includes all active registered groups.
+- Help navigation includes Creator information and Premium Dashboard access.
+- Link detection covers HTTP/HTTPS, WWW, t.me, telegram.me, URL entities and hidden text_link entities.
+- Edited message updates are subscribed to and checked by premium moderation middleware.
+- Admin lookup failure prevents automated moderation action.
+- Separate photo/video/animation moderation switches added without deleting legacy media switch.
+- Warning threshold is persisted per group; custom-filter warning action is supported when configured in data.
+- Scheduled jobs use persisted delivery states, bounded retries, and uncertain state after interrupted sends.
+- Additive Premium config defaults preserve existing keys.
+- Pre-upgrade DB backup; corrupt DB causes safe startup refusal rather than empty DB overwrite.
+- Unit tests added for permission service and link detection.
+
+Local test results:
+- Node syntax checks: PASS.
+- Unit tests: 7 PASS, 0 FAIL.
+
+Not tested (requires production-like credentials/environment):
+- Telegram live API and actual group Creator changes.
+- Bot admin rights and actual delete/restrict/ban/send permissions.
+- Real group moderation, edited messages as delivered by Telegram, and media welcome.
+- Real scheduled message delivery/retry across process restart.
+- Existing production database migration and byte-for-byte preservation (database was not in supplied ZIP).
+- Render deployment, persistent disk, restart/redeploy persistence.
+- OpenRouter AI responses and provider availability.
+
+Known incomplete requested areas:
+- Full advanced message builder lifecycle (edit/delete/template editing, custom callback actions, rich multi-row builder UI).
+- Full custom filter CRUD/edit/action configuration UI.
+- Full admin permission matrix and admin-managed settings.
+- Complete welcome button/media preview management and all requested automation controls.
+- Complete statistics coverage and all separate anti-spam/anti-content rules.
+- End-to-end integration/regression testing against a real Telegram test bot and test groups.
+
+This status file intentionally does not claim a 100% completed Premium Edition.
+Do not deploy this hardening checkpoint as a fully completed final release.
