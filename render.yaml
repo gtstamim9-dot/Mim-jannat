@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: mim-jannat-bot
+    runtime: node
+    plan: free
+    # Repository/ZIP-এর root-এই index.js ও package.json আছে — তাই Root Directory ফাঁকা রাখুন (কিছু বসাবেন না)।
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: NODE_VERSION
+        value: "20"
+      # ঐচ্ছিক: AI মডেল বদলাতে (ফাঁকা রাখলে আগের মডেলই চলবে)
+      # - key: OPENROUTER_MODEL
+      #   value: openai/gpt-4o-mini
+      # Free plan-এ বট নিজেই প্রতি ১০ মিনিটে নিজের /health পিং করে জেগে থাকে (RENDER_EXTERNAL_URL Render নিজে দেয়)। বন্ধ করতে: KEEP_ALIVE=off
+    # ⚠️ Free plan-এ ডেটা (users, groups, settings, warnings, schedules) Redeploy/Restart-এ মুছে যেতে পারে।
+    # স্থায়ী ডেটার জন্য plan: starter (বা উপরে) করুন, নিচের অংশ চালু করুন এবং Environment-এ DATA_DIR যোগ করুন।
+    # envVars-এ যোগ করুন:  - key: DATA_DIR   value: /opt/render/project/src/data
+    # disk:
+    #   name: mim-data
+    #   mountPath: /opt/render/project/src/data
+    #   sizeGB: 1
